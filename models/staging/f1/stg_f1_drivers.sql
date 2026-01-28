@@ -1,4 +1,4 @@
-{{ config(materialized='table') }}
+{{ config(materialized='view') }}
 
 with raw_drivers as (
     select * from {{ source('f1_raw', 'drivers') }}
@@ -9,9 +9,6 @@ select
     driverRef as driver_slug,
     forename || ' ' || surname as full_name,
     nationality,
-    -- Now we can safely handle the string
-    case 
-        when dob = '\N' or dob = '' then null 
-        else dob 
-    end as birth_date_string
+    -- No CASE needed! DuckDB already turned \N into a proper NULL
+    try_cast(dob as date) as birth_date
 from raw_drivers

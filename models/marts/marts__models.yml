@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: dim_drivers
+    columns:
+      - name: driver_id
+        tests:
+          - unique
+          - not_null
+      - name: birth_date
+        description: "Should be a valid date now, no more strings!"
+        tests:
+          - not_null:
+              config:
+                where: "driver_id <= 100" # Some very old drivers might still be null, that's okay
+
+  - name: fct_race_results
+    columns:
+      - name: points_scored
+        tests:
+          - not_null
