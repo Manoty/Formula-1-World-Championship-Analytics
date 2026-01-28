@@ -1,15 +1,30 @@
-Welcome to your new dbt project!
+# 🏎️ Formula 1 Data Analytics (dbt + DuckDB)
 
-### Using the starter project
+An end-to-end ELT pipeline that transforms raw Formula 1 CSV data into a high-performance analytics layer. This project demonstrates modern analytics engineering practices including modular modeling, data testing, and resilient ingestion.
 
-Try running the following commands:
-- dbt run
-- dbt test
+## 🚀 The Stack
+- **Database:** [DuckDB](https://duckdb.org/) (In-process OLAP)
+- **Transformation:** [dbt (data build tool)](https://www.getdbt.com/)
+- **Data Source:** Ergast F1 Historical Dataset (Kaggle)
+
+## 🏗️ Data Architecture
+The project follows the **Medallion Architecture** to ensure data quality and maintainability:
+
+1.  **Staging (`stg_`):** Initial cleanup of raw CSVs. Handles the ingestion of non-standard null characters (`\N`) and enforces schema types.
+2.  **Intermediate (`int_`):** Complex logic layer. Joins races, results, and drivers. Includes **SQL Window Functions** to calculate cumulative championship points and race-by-race rankings.
+3.  **Marts (`dim_` / `fct_`):** The "Gold" layer optimized for BI tools.
+    - `fct_race_results`: Granular race performance data.
+    - `dim_drivers`: Driver biographical data with calculated age metrics.
+    - `int_driver_standings`: Running season totals.
 
 
-### Resources:
-- Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
-- Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions and answers
-- Join the [chat](https://community.getdbt.com/) on Slack for live discussions and support
-- Find [dbt events](https://events.getdbt.com) near you
-- Check out [the blog](https://blog.getdbt.com/) for the latest news on dbt's development and best practices
+
+## 🛠️ Installation & Usage
+### 1. Prerequisites
+- Python 3.10+
+- dbt-duckdb adapter
+
+### 2. Setup
+Clone the repo and install dependencies:
+```bash
+pip install dbt-duckdb
