@@ -6,6 +6,11 @@ sources:
       external_location: "data/{name}.csv"
     tables:
       - name: drivers
+        config:
+          external_location: "data/drivers.csv"
+          # This forces DuckDB to treat dob as text so the \N doesn't crash the reader
+          options:
+            types: {'dob': 'VARCHAR'}
       - name: races
       - name: results
       - name: constructors
