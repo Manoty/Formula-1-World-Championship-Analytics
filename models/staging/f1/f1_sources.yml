@@ -1,0 +1,21 @@
+version: 2
+
+sources:
+  - name: f1_raw
+    meta:
+      external_location: "data/{name}.csv"
+    tables:
+      - name: drivers
+      - name: races
+      - name: results
+      - name: constructors
+      - name: status
+      - name: circuits
+      - name: constructor_results
+      - name: constructor_standings
+      - name: driver_standings
+      - name: lap_times
+      - name: pit_stops
+      - name: qualifying
+      - name: seasons
+      - name: sprint_results
