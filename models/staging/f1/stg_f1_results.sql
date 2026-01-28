@@ -9,8 +9,9 @@ select
     cast(raceId as integer) as race_id,
     cast(driverId as integer) as driver_id,
     cast(constructorId as integer) as constructor_id,
-    cast(nullif(grid, '\N') as integer) as start_position,
-    cast(nullif(position, '\N') as integer) as finish_position,
+    -- try_cast handles cases where the data might be blank or weird
+    try_cast(grid as integer) as start_position,
+    try_cast(position as integer) as finish_position,
     cast(points as float) as points_scored,
     cast(laps as integer) as laps_completed,
     cast(statusId as integer) as status_id

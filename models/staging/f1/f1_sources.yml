@@ -4,21 +4,13 @@ sources:
   - name: f1_raw
     meta:
       external_location: "data/{name}.csv"
+    # This config block now applies to EVERY table listed below
+    config:
+      options:
+        nullstr: '\N'
     tables:
       - name: drivers
-        config:
-          options:
-            nullstr: '\N'
-      - name: races
       - name: results
+      - name: races
       - name: constructors
       - name: status
-      - name: circuits
-      - name: constructor_results
-      - name: constructor_standings
-      - name: driver_standings
-      - name: lap_times
-      - name: pit_stops
-      - name: qualifying
-      - name: seasons
-      - name: sprint_results
