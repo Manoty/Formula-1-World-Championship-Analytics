@@ -1,0 +1,6 @@
+# pages/sidebar.yaml
+links:
+  - title: 🏠 Home
+    path: /
+  - title: 🏁 Driver Comparison
+    path: /compare

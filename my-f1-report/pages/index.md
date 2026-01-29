@@ -1,6 +1,8 @@
 # 🏎️ F1 Championship Analytics
 <LastRefreshed/>
+# 🏎️ F1 Championship Analytics
 
+[Go to Driver Comparison →](/compare)
 ## 🏆 Points Leaderboard
 ```sql top_drivers
 select driver_name, sum(points_scored) as total
