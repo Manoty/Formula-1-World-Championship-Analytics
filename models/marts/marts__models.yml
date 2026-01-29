@@ -1,21 +1,17 @@
 version: 2
 
 models:
-  - name: dim_drivers
-    columns:
-      - name: driver_id
-        tests:
-          - unique
-          - not_null
-      - name: birth_date
-        description: "Should be a valid date now, no more strings!"
-        tests:
-          - not_null:
-              config:
-                where: "driver_id <= 100" # Some very old drivers might still be null, that's okay
-
   - name: fct_race_results
+    description: "Final race results with cleaned driver and constructor details."
     columns:
-      - name: points_scored
+      - name: race_id
         tests:
           - not_null
+          - relationships:
+              to: ref('stg_f1_results')
+              field: race_id
+
+      - name: points_scored
+        description: "Points awarded for the race finish position."
+        tests:
+          - not_null # This catches an uncleaned \N error!

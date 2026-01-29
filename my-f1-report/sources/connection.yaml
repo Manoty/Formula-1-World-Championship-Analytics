@@ -1,0 +1,4 @@
+# my-f1-report/sources/f1/connection.yaml
+type: duckdb
+
+filename: C:/kev/Formula1_dbt_analytics/f1_project/dev.duckdb
