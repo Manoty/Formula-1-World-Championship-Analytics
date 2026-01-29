@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: stg_f1_results
+    columns:
+      - name: result_id
+        tests:
+          - unique
+          - not_null
+      - name: race_id
+        tests:
+          - not_null
+
+  - name: stg_f1_drivers
+    columns:
+      - name: driver_id
+        tests:
+          - unique
+          - not_null
